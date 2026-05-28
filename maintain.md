@@ -18,8 +18,8 @@
 - ✅ 首页仪表盘（今日/本周/本月/本年 收支汇总）
 - ✅ 数据层完整（drift 表/DAO/Repository/Provider）
 - ✅ 自适应导航（移动端 BottomNav / 桌面端 NavigationRail）
-- ⏳ 记账页（Phase 2）
-- ⏳ 交易列表（Phase 2）
+- ✅ 记账页（支出/收入/转账 + 表单 + 数字键盘）
+- ✅ 交易列表（按月分组 + 搜索 + 滑动删除）
 - ⏳ 账户管理（Phase 3）
 - ⏳ 分类管理（Phase 3）
 - ⏳ 统计分析（Phase 4）
