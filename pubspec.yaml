@@ -1,7 +1,7 @@
 name: bendy_jizhang
 description: "A cross-platform local bookkeeping app."
 publish_to: 'none'
-version: 0.1.0+1
+version: 0.5.0+5
 
 environment:
   sdk: ^3.12.0

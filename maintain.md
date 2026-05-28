@@ -1,3 +1,35 @@
+## v0.5.0 - 2026-05-28
+
+### 变更内容
+- SettingsScreen + SettingsProvider（主题/货币/清除数据）
+- 主题模式切换（系统/浅色/深色）实时生效
+- 货币选择（CNY/USD/EUR/JPY/GBP/KRW）
+- 清除所有数据功能
+- app.dart 连接 settings 实时切换主题
+- 版本号更新至 0.5.0
+
+## v0.4.0 - 2026-05-28
+
+### 变更内容
+- StatisticsScreen（日期范围 + 类型 + 图表切换）
+- 饼图/柱状图/趋势线 (fl_chart)
+- 分类排行 + 进度条
+
+## v0.3.0 - 2026-05-28
+
+### 变更内容
+- AccountListScreen（资产/负债分组 + 净值卡片）
+- AccountEditScreen（新建/编辑 + 图标/颜色选择）
+- CategoryListScreen（支出/收入切换 + 二级分类）
+- ColorPickerSheet + IconPickerSheet
+
+## v0.2.0 - 2026-05-28
+
+### 变更内容
+- TransactionEditScreen（支出/收入/转账 + 表单）
+- TransactionListScreen（按月分组 + 搜索 + 滑动删除）
+- BottomSheet 组件（分类/账户/日期/数字键盘）
+
 ## v0.1.0 - 2026-05-28
 
 ### 变更内容
@@ -20,7 +52,10 @@
 - ✅ 自适应导航（移动端 BottomNav / 桌面端 NavigationRail）
 - ✅ 记账页（支出/收入/转账 + 表单 + 数字键盘）
 - ✅ 交易列表（按月分组 + 搜索 + 滑动删除）
-- ⏳ 账户管理（Phase 3）
+- ✅ 账户管理（资产/负债分组 + 净值 + 新建/编辑）
+- ✅ 分类管理（支出/收入 + 二级分类 + 颜色选择）
+- ✅ 统计分析（饼图/柱状图/趋势线 + 分类排行）
+- ✅ 设置（主题切换 + 货币 + 清除数据）
 - ⏳ 分类管理（Phase 3）
 - ⏳ 统计分析（Phase 4）
 - ⏳ 设置 + i18n（Phase 5）
