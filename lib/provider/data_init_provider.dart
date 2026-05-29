@@ -4,7 +4,7 @@ import 'package:bendy_jizhang/model/enums.dart';
 import 'package:bendy_jizhang/provider/database_provider.dart';
 import 'package:drift/drift.dart';
 
-final dataInitProvider = Provider<Future<void>>((ref) async {
+final dataInitProvider = FutureProvider<void>((ref) async {
   final db = ref.read(appDatabaseProvider);
   final existing = await (db.select(db.categories)).get();
   if (existing.isEmpty) {

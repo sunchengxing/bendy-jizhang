@@ -1,0 +1,4 @@
+-keep class * extends com.squareup.sqldelight.driver.android.AndroidSqliteDriver { *; }
+-keep class io.github.vaneprojects.sqlite3.** { *; }
+-keep class * extends drift.runtime.** { *; }
+-dontwarn io.github.vaneprojects.sqlite3.**

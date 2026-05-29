@@ -9,7 +9,7 @@ class BendyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(dataInitProvider);
+    final initAsync = ref.watch(dataInitProvider);
     final settings = ref.watch(settingsProvider);
     final router = ref.watch(appRouterProvider);
 
@@ -28,6 +28,33 @@ class BendyApp extends ConsumerWidget {
       ),
       themeMode: settings.themeMode,
       routerConfig: router,
+      builder: (context, child) {
+        return initAsync.when(
+          loading: () => const MaterialApp(
+            home: Scaffold(body: Center(child: CircularProgressIndicator())),
+          ),
+          error: (e, _) => MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.error_outline, size: 48, color: Colors.red),
+                      const SizedBox(height: 16),
+                      Text('初始化失败', style: Theme.of(context).textTheme.titleMedium),
+                      const SizedBox(height: 8),
+                      Text('$e', textAlign: TextAlign.center, style: const TextStyle(fontSize: 12)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          data: (_) => child!,
+        );
+      },
     );
   }
 
