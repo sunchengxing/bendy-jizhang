@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bendy_jizhang/database/app_database.dart';
 import 'package:bendy_jizhang/model/enums.dart';
@@ -6,12 +7,19 @@ import 'package:drift/drift.dart';
 
 final dataInitProvider = FutureProvider<void>((ref) async {
   final db = ref.read(appDatabaseProvider);
+  await _init(db).timeout(
+    const Duration(seconds: 10),
+    onTimeout: () => throw TimeoutException('数据库初始化超时'),
+  );
+});
+
+Future<void> _init(AppDatabase db) async {
   final existing = await (db.select(db.categories)).get();
   if (existing.isEmpty) {
     await _insertPresetCategories(db);
     await _insertPresetAccounts(db);
   }
-});
+}
 
 Future<void> _insertPresetCategories(AppDatabase db) async {
   final expenseCategories = [
