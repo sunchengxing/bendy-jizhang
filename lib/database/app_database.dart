@@ -1,5 +1,10 @@
 import 'package:drift/drift.dart';
-import 'package:drift_flutter/drift_flutter.dart';
+import 'package:drift/native.dart';
+import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
+import 'dart:io';
+
 import 'package:bendy_jizhang/model/enums.dart';
 import 'package:bendy_jizhang/database/tables/accounts.dart';
 import 'package:bendy_jizhang/database/tables/transactions.dart';
@@ -17,7 +22,13 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(super.e);
 
   static QueryExecutor _openConnection() {
-    return driftDatabase(name: 'bendy_jizhang');
+    return LazyDatabase(() async {
+      final dbDir = await getApplicationDocumentsDirectory();
+      final file = File(p.join(dbDir.path, 'bendy_jizhang.sqlite'));
+      // 确保 sqlite3 native 库可用
+      await applyWorkaroundToOpenSqlite3OnOldAndroidVersions();
+      return NativeDatabase.createInBackground(file);
+    });
   }
 
   @override

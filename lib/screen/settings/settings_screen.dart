@@ -42,7 +42,7 @@ class SettingsScreen extends ConsumerWidget {
           _SectionHeader(title: '关于'),
           const ListTile(
             title: Text('Bendy 记账'),
-            subtitle: Text('v0.5.0'),
+            subtitle: Text('v0.6.0'),
           ),
         ],
       ),
