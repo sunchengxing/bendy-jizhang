@@ -23,25 +23,29 @@ jobs:
       - name: Generate drift code
         run: dart run build_runner build --delete-conflicting-outputs
 
-      - name: Build APK
-        run: flutter build apk --release
+      - name: Build APK (split per ABI)
+        run: flutter build apk --release --split-per-abi
 
-      - name: Rename APK
+      - name: Rename APKs
         run: |
           VERSION=${GITHUB_REF_NAME}
-          mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/bendy-jizhang-${VERSION}.apk
+          cd build/app/outputs/flutter-apk
+          for apk in app-*-release.apk; do
+            abi=$(echo "$apk" | sed 's/app-\(.*\)-release\.apk/\1/')
+            mv "$apk" "bendy-jizhang-${VERSION}-${abi}.apk"
+          done
 
-      - name: Upload APK artifact
+      - name: Upload APK artifacts
         uses: actions/upload-artifact@v4
         with:
           name: bendy-jizhang-${{ github.ref_name }}
-          path: build/app/outputs/flutter-apk/bendy-jizhang-${{ github.ref_name }}.apk
+          path: build/app/outputs/flutter-apk/bendy-jizhang-*.apk
 
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: build/app/outputs/flutter-apk/bendy-jizhang-${{ github.ref_name }}.apk
+          files: build/app/outputs/flutter-apk/bendy-jizhang-*.apk
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

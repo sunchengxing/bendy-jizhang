@@ -1,7 +1,7 @@
 name: bendy_jizhang
 description: "A cross-platform local bookkeeping app."
 publish_to: 'none'
-version: 0.6.0+7
+version: 0.6.1+8
 
 environment:
   sdk: ^3.12.0
@@ -20,6 +20,7 @@ dependencies:
 
   # Database
   drift: ^2.22.0
+  drift_flutter: ^0.2.7
   sqlite3_flutter_libs: ^0.5.28
   path_provider: ^2.1.5
   path: ^1.9.0
